@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Prog 4: Textures and Transparency</title>
+    <style>
+      body { font-family: sans-serif; }
+      #controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; margin-bottom: 8px; }
+      fieldset { padding: 2px 8px 6px; }
+      input[type=number] { width: 60px; }
+      #status { font-size: 13px; margin-bottom: 4px; color: #555; }
+      #help { font-size: 13px; line-height: 1.6; }
+    </style>
+
+    <!-- gl-matrix: math library for vector/matrix operations -->
+    <!-- Credit: Brandon Jones and Colin MacKay, https://github.com/toji/gl-matrix -->
+    <script type="text/javascript" src="gl-matrix-min.js"></script>
+    <script type="text/javascript" src="rasterize.js"></script>
+  </head>
+
+  <body onload="main();">
+    <div id="controls">
+      <fieldset>
+        <legend>Canvas (viewport)</legend>
+        <label>width  <input type="number" id="canvasWidth"  value="512" min="1"></label>
+        <label>height <input type="number" id="canvasHeight" value="512" min="1"></label>
+      </fieldset>
+      <fieldset>
+        <legend>Window (view space)</legend>
+        <label>left   <input type="number" id="winLeft"   value="-0.5" step="0.05"></label>
+        <label>right  <input type="number" id="winRight"  value="0.5"  step="0.05"></label>
+        <label>bottom <input type="number" id="winBottom" value="-0.5" step="0.05"></label>
+        <label>top    <input type="number" id="winTop"    value="0.5"  step="0.05"></label>
+      </fieldset>
+      <button id="applyView">Apply</button>
+    </div>
+
+    <!-- Two-canvas sky approach matching the prog4 shell:
+         myImageCanvas draws sky.jpg in 2D; myWebGLCanvas sits on top with transparent WebGL. -->
+    <div style="position: relative; width: 512px; height: 512px; display: inline-block;">
+      <canvas id="myImageCanvas" width="512" height="512"
+              style="position: absolute; top: 0; left: 0;"></canvas>
+      <canvas id="myWebGLCanvas" width="512" height="512"
+              style="position: absolute; top: 0; left: 0;"></canvas>
+    </div>
+
+    <div id="help">
+      <strong>View:</strong> a/d left/right &nbsp; w/s forward/back &nbsp; q/e up/down &nbsp;
+      A/D yaw left/right &nbsp; W/S pitch.<br>
+      <strong>Select model:</strong> &larr;/&rarr; previous/next &nbsp; space = deselect.<br>
+      <strong>Move selected:</strong> k/; left/right &nbsp; o/l forward/back &nbsp; i/p up/down &nbsp;
+      K/: yaw &nbsp; O/L pitch &nbsp; I/P roll.<br>
+      <strong>Part 8:</strong> ! = "Downhill Run" scene from my Unity game (camera follows the rider until you press a view key; ! again restarts) &nbsp; 0 = back to the assignment scene.
+    </div>
+  </body>
+</html>
