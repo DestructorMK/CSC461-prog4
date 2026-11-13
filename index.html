@@ -12,7 +12,6 @@
       #help { font-size: 13px; line-height: 1.6; }
     </style>
 
-    <!-- gl-matrix: math library for vector/matrix operations -->
     <!-- Credit: Brandon Jones and Colin MacKay, https://github.com/toji/gl-matrix -->
     <script type="text/javascript" src="gl-matrix-min.js"></script>
     <script type="text/javascript" src="rasterize.js"></script>
@@ -35,8 +34,7 @@
       <button id="applyView">Apply</button>
     </div>
 
-    <!-- Two-canvas sky approach matching the prog4 shell:
-         myImageCanvas draws sky.jpg in 2D; myWebGLCanvas sits on top with transparent WebGL. -->
+    <div id="status"></div>
     <div style="position: relative; width: 512px; height: 512px; display: inline-block;">
       <canvas id="myImageCanvas" width="512" height="512"
               style="position: absolute; top: 0; left: 0;"></canvas>
@@ -50,6 +48,7 @@
       <strong>Select model:</strong> &larr;/&rarr; previous/next &nbsp; space = deselect.<br>
       <strong>Move selected:</strong> k/; left/right &nbsp; o/l forward/back &nbsp; i/p up/down &nbsp;
       K/: yaw &nbsp; O/L pitch &nbsp; I/P roll.<br>
+      <strong>Render modes:</strong> b = cycle unlit / replace / modulate &nbsp; , and . = cycle unsorted / painter's / BSP transparency.<br>
       <strong>Part 8:</strong> ! = "Downhill Run" scene from my Unity game (camera follows the rider until you press a view key; ! again restarts) &nbsp; 0 = back to the assignment scene.
     </div>
   </body>
